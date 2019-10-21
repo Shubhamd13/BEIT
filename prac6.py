@@ -16,13 +16,13 @@ np.random.seed(seed)
 #creating model
 NNmodel = Sequential()
 NNmodel.add(Dense(units=8, activation='sigmoid'))
-NNmodel.add(Dense(units=4, activation='sigmoid'))
+NNmodel.add(Dense(units=6, activation='sigmoid'))
 NNmodel.add(Dense(units=1, activation='sigmoid'))
 
 #compiling model
 NNmodel.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
 
-NNmodel.fit(X_train,Y_train,nb_epoch=80, batch_size=20)
+NNmodel.fit(X_train,Y_train,nb_epoch=50, batch_size=20)
 
 acc = NNmodel.evaluate(X_test, Y_test)
 print("Accuracy: %.2f%%" % (acc[1]*100))
