@@ -1,0 +1,15 @@
+library(arules)
+library(arulesViz) 
+library(datasets) 
+data(Groceries) 
+rules  <- apriori(Groceries,  parameter  = list(supp  = 0.001, conf = 0.8)) 
+options(digits=2) 
+inspect(rules[1:5]) 
+rules<-sort(rules,  by="confidence",  decreasing=TRUE) 
+rules  <- apriori(Groceries,  parameter  = list(supp  = 0.001, conf = 0.8,maxlen=3)) 
+library(arulesViz) 
+plot(rules,method="graph",engine='interactive',shading=NA)
+rules<-apriori(data=Groceries,  parameter=list(supp=0.001,conf  = 0.15,minlen=2))   
+plot(rules,method="graph",engine='interactive',shading=NA)
+
+               
