@@ -33,7 +33,6 @@ df['cluster']=predicted
 print(df)
 
 
-
 df0=df[df.cluster==0]
 df1=df[df.cluster==1]
 df2=df[df.cluster==2]
@@ -49,8 +48,3 @@ print("the final centroids are")
 print(km.cluster_centers_)
 plt.scatter(km.cluster_centers_[:,0],km.cluster_centers_[:,1],color='black',marker='*')
 plt.show()
-
- 
-
-
-#n_clusters=number of clusters you want

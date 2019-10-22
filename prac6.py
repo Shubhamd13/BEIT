@@ -26,5 +26,4 @@ NNmodel.fit(X_train,Y_train,nb_epoch=50, batch_size=20)
 
 acc = NNmodel.evaluate(X_test, Y_test)
 print("Accuracy: %.2f%%" % (acc[1]*100))
-
-#ann_viz(NNmodel,filename="viz.png", title="NN")
+ann_viz(NNmodel,filename="viz.png", title="NN")
