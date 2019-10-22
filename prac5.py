@@ -1,73 +1,47 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import style
-style.use("ggplot")
+#from matplotlib import style
+#style.use("ggplot")
 from sklearn import svm
 from mlxtend.plotting import plot_decision_regions
-#linear
-X = np.array([[1,2],
-             [5,8],
-             [1.5,1.8],
-             [8,8],
-             [1,0.6],
-             [9,11]])
-#labels
-y = np.array([0,1,0,1,0,1])
+from sklearn import datasets
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+
+iris_dataset = datasets.load_iris()
+X = iris_dataset.data[:, :2]
+y = iris_dataset.target
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.25, random_state=42)
 #watch plot
 plt.scatter(X[:,0],X[:,1],c=y)
 plt.show()
 #define classfier with C = 1
 clf = svm.SVC(kernel='linear', C = 1.0)
-clf.fit(X,y)
-plot_decision_regions(X=X, 
-                      y=y,
-                      clf=clf, 
-                      legend=1)
+clf.fit(X_train,y_train)
+plot_decision_regions(X=X,y=y,clf=clf,legend=1)
 plt.show()
-print("Prediction of target for 0.58,0.76 values:")
-t= clf.predict([[0.58,0.76]])
-print(t)
+y_pred=clf.predict(X_test)
 
-print("Prediction of target for 10.58 ,10.76 value")
-t= clf.predict([[10.58,10.76]])
-print(t)
+print(accuracy_score(y_test, y_pred))
 
 #rbf
-X = np.array([[2,4],
-             [2.3,4.2],
-             [3,9],
-             [3.3,9.3],
-             [1,0.6],
-             [1.2,0.7],
-              [0,0],
-              [4,16]])
-#labels
-y = np.array([0,1,0,1,0,1,0,1])
-#watch plot
-plt.scatter(X[:,0],X[:,1],c=y)
-plt.show()
-clf = svm.SVC(kernel='rbf',gamma="auto")
-clf.fit(X,y)
+clf = svm.SVC(kernel='rbf')
+clf.fit(X_train,y_train)
 plot_decision_regions(X=X, 
                       y=y,
                       clf=clf, 
                       legend=1)
 plt.show()
+y_pred=clf.predict(X_test)
+print(accuracy_score(y_test, y_pred))
 #poly
-#rbf
-X = np.array([[2,4],
-             [2.3,4.2],
-             [3,9],
-             [3.3,9.3],
-             [1,0.6],
-             [1.4,0.7],
-              [0,0],
-              [4,16]])
-#labels
-y = np.array([0,1,0,1,0,1,0,1])
-poly_svc = svm.SVC(kernel='poly', degree=2, C=50).fit(X, y)
+poly_svc = svm.SVC(kernel='poly').fit(X_train, y_train)
 plot_decision_regions(X=X, 
                       y=y,
                       clf=poly_svc, 
                       legend=1)
 plt.show()
+
+y_pred=poly_svc.predict(X_test)
+
+print(accuracy_score(y_test, y_pred))
