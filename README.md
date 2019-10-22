@@ -21,3 +21,4 @@ Required s/w
 - mlxtend
 - ann_visualizer
 - tensorflow
+- graphviz
