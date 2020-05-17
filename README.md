@@ -22,3 +22,5 @@ Required s/w
 - ann_visualizer
 - tensorflow
 - graphviz
+# Contributors
+Subhasish Chatterjee
